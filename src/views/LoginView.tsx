@@ -16,7 +16,7 @@ export function LoginView() {
   const [showResetPassword, setShowResetPassword] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [validationErrors, setValidationErrors] = useState<string[]>([])
-  const [showBiometric, setShowBiometric] = useState(false)
+
   
   const { login, register, resetPassword, isLoading, error, clearError } = useAuthStore()
 
@@ -98,17 +98,17 @@ export function LoginView() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
         <GlassCard className="w-full max-w-md p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-3xl font-bold text-black font-geist">
               Reset Password
             </h1>
-            <p className="text-gray-600 dark:text-gray-300 mt-2">
+            <p className="text-gray-700 mt-2 font-geist">
               Enter your email to receive a reset link
             </p>
           </div>
 
           <form onSubmit={handleResetPassword} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-black mb-2 font-geist">
                 Email
               </label>
               <Input
@@ -153,10 +153,10 @@ export function LoginView() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <GlassCard className="w-full max-w-md p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-black font-geist">
             Splitwise
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">
+          <p className="text-gray-700 mt-2 font-geist">
             {isSignUp ? 'Create your account' : 'Sign in to your account'}
           </p>
         </div>
@@ -166,7 +166,7 @@ export function LoginView() {
             <>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="firstName" className="block text-sm font-medium text-black mb-2 font-geist">
                     First Name
                   </label>
                   <Input
@@ -179,7 +179,7 @@ export function LoginView() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="lastName" className="block text-sm font-medium text-black mb-2 font-geist">
                     Last Name
                   </label>
                   <Input
@@ -196,7 +196,7 @@ export function LoginView() {
           )}
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-black mb-2 font-geist">
               Email
             </label>
             <Input
@@ -210,7 +210,7 @@ export function LoginView() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="password" className="block text-sm font-medium text-black mb-2 font-geist">
               Password
             </label>
             <div className="relative">
@@ -291,14 +291,14 @@ export function LoginView() {
           )}
           
           <div className="text-center">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-700 font-geist">
               {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
               <button 
                 onClick={() => {
                   setIsSignUp(!isSignUp)
                   clearError()
                 }}
-                className="text-blue-600 hover:text-blue-500 font-medium"
+                className="text-blue-600 hover:text-blue-500 font-medium font-geist"
               >
                 {isSignUp ? 'Sign in' : 'Sign up'}
               </button>

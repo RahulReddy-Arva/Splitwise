@@ -7,9 +7,12 @@ import {
   Users, 
   Scale, 
   Settings,
-  Menu
+  Menu,
+  X
 } from 'lucide-react'
 import { useState } from 'react'
+import { GlassNavigation, GlassNavItem, GlassNavBrand, GlassNavSection } from '@/components/ui/glass-navigation'
+import { GlassButton } from '@/components/ui/glass-button'
 
 interface MainLayoutProps {
   children: ReactNode
@@ -29,70 +32,90 @@ export function MainLayout({ children }: MainLayoutProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Sidebar */}
-      <div className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full",
-        "lg:translate-x-0 lg:static lg:inset-0"
-      )}>
-        <div className="flex flex-col h-full glass-card rounded-none lg:rounded-r-xl">
-          <div className="flex items-center justify-between h-16 px-6 border-b border-white/10">
-            <h1 className="text-xl font-bold text-white">Splitwise</h1>
-            <button
+      {/* Sidebar Navigation */}
+      <GlassNavigation
+        variant="elevated"
+        position="sidebar"
+        blur="xl"
+        className={cn(
+          "w-64 transform transition-transform duration-300 ease-in-out",
+          sidebarOpen ? "translate-x-0" : "-translate-x-full",
+          "lg:translate-x-0"
+        )}
+      >
+        <div className="flex flex-col h-full">
+          {/* Brand Header */}
+          <div className="flex items-center justify-between border-b border-white/10">
+            <GlassNavBrand className="text-black font-geist">
+              Splitwise
+            </GlassNavBrand>
+            <GlassButton
+              variant="ghost"
+              size="icon"
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden text-white hover:text-gray-300"
+              className="lg:hidden mr-4"
             >
-              <Menu className="h-6 w-6" />
-            </button>
+              <X className="h-5 w-5" />
+            </GlassButton>
           </div>
           
-          <nav className="flex-1 px-4 py-6 space-y-2">
-            {navigation.map((item) => {
-              const isActive = location.pathname === item.href
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={cn(
-                    "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
-                    isActive
-                      ? "bg-white/20 text-white"
-                      : "text-white/70 hover:text-white hover:bg-white/10"
-                  )}
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <item.icon className="mr-3 h-5 w-5" />
-                  {item.name}
-                </Link>
-              )
-            })}
-          </nav>
+          {/* Navigation Items */}
+          <div className="flex-1 p-4">
+            <GlassNavSection title="Main">
+              {navigation.map((item) => {
+                const isActive = location.pathname === item.href
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <GlassNavItem
+                      active={isActive}
+                      icon={<item.icon className="h-5 w-5" />}
+                    >
+                      {item.name}
+                    </GlassNavItem>
+                  </Link>
+                )
+              })}
+            </GlassNavSection>
+          </div>
         </div>
-      </div>
+      </GlassNavigation>
 
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Main content */}
       <div className="lg:pl-64">
-        <div className="flex items-center justify-between h-16 px-6 lg:hidden">
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
-          <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-            Splitwise
-          </h1>
-        </div>
+        {/* Mobile header */}
+        <GlassNavigation
+          variant="elevated"
+          position="top"
+          className="lg:hidden h-16"
+        >
+          <div className="flex items-center justify-between px-6 h-full">
+            <GlassButton
+              variant="ghost"
+              size="icon"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <Menu className="h-6 w-6" />
+            </GlassButton>
+            <GlassNavBrand className="px-0 text-black font-geist">
+              Splitwise
+            </GlassNavBrand>
+            <div className="w-10" /> {/* Spacer for centering */}
+          </div>
+        </GlassNavigation>
         
-        <main className="p-6">
+        <main className="p-6 lg:pt-6 pt-20">
           {children}
         </main>
       </div>

@@ -7,25 +7,25 @@ export function ExpensesView() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-black font-geist">
             Expenses
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">
+          <p className="text-gray-700 mt-2 font-geist">
             Manage your shared expenses
           </p>
         </div>
-        <Button variant="glass" className="flex items-center gap-2">
+        <Button variant="glass" className="flex items-center gap-2 font-geist text-black">
           <Plus className="h-4 w-4" />
           Add Expense
         </Button>
       </div>
 
-      <GlassCard className="p-6">
+      <GlassCard variant="elevated" className="p-6">
         <div className="text-center py-12">
-          <p className="text-gray-500 dark:text-gray-400 text-lg">
+          <p className="text-black text-lg font-geist">
             No expenses yet
           </p>
-          <p className="text-gray-400 dark:text-gray-500 mt-2">
+          <p className="text-gray-600 mt-2 font-geist">
             Create your first expense to get started
           </p>
         </div>
