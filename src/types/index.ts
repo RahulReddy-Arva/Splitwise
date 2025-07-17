@@ -71,6 +71,52 @@ export interface Payment {
   settledAt?: Date
 }
 
+// Request/Response types for API
+export interface ExpenseRequest {
+  description: string
+  amount: number
+  currency: string
+  date: Date
+  category: ExpenseCategory
+  groupId?: string
+  paidBy: string
+  splits: ExpenseSplitRequest[]
+  notes?: string
+}
+
+export interface ExpenseSplitRequest {
+  userId: string
+  splitType: SplitType
+  amount?: number
+  percentage?: number
+  shares?: number
+}
+
+export interface GroupRequest {
+  name: string
+  description?: string
+  type: GroupType
+}
+
+export interface PaymentRequest {
+  fromUser: string
+  toUser: string
+  amount: number
+  currency: string
+  method: PaymentMethod
+  groupId?: string
+}
+
+export interface Settlement {
+  id: string
+  fromUser: string
+  toUser: string
+  amount: number
+  currency: string
+  groupId?: string
+}
+
+// Enums and types
 export type ExpenseCategory = 
   | 'food'
   | 'transport'
@@ -88,3 +134,15 @@ export type PaymentMethod = 'venmo' | 'paypal' | 'apple_pay' | 'cash' | 'other'
 export type PaymentStatus = 'pending' | 'completed' | 'failed' | 'cancelled'
 
 export type SplitType = 'equal' | 'exact' | 'percentage' | 'shares'
+
+// Validation error types
+export interface ValidationError {
+  field: string
+  message: string
+}
+
+export interface ApiError {
+  message: string
+  code: string
+  details?: any
+}
