@@ -60,10 +60,10 @@ export function SettingsView() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-3xl font-bold text-black font-geist">
           Settings
         </h1>
-        <p className="text-gray-600 dark:text-gray-300 mt-2">
+        <p className="text-gray-700 mt-2 font-geist">
           Manage your account and preferences
         </p>
       </div>
@@ -77,10 +77,10 @@ export function SettingsView() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors font-geist ${
                   activeTab === tab.id
-                    ? 'bg-white/20 text-white'
-                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                    ? 'bg-white/20 text-black'
+                    : 'text-gray-700 hover:text-black hover:bg-white/10'
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -102,7 +102,7 @@ export function SettingsView() {
           ) : (
             <GlassCard className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-black font-geist">
                   Profile Information
                 </h3>
                 <Button
@@ -133,35 +133,35 @@ export function SettingsView() {
                 <div className="flex-1 space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      <label className="block text-sm font-medium text-black mb-1 font-geist">
                         First Name
                       </label>
-                      <p className="text-gray-900 dark:text-white font-medium">
+                      <p className="text-black font-medium font-geist">
                         {user?.firstName}
                       </p>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      <label className="block text-sm font-medium text-black mb-1 font-geist">
                         Last Name
                       </label>
-                      <p className="text-gray-900 dark:text-white font-medium">
+                      <p className="text-black font-medium font-geist">
                         {user?.lastName}
                       </p>
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-black mb-1 font-geist">
                       Email Address
                     </label>
-                    <p className="text-gray-900 dark:text-white font-medium">
+                    <p className="text-black font-medium font-geist">
                       {user?.email}
                     </p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-black mb-1 font-geist">
                       Member Since
                     </label>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-600 font-geist">
                       {user?.createdAt.toLocaleDateString()}
                     </p>
                   </div>
@@ -175,7 +175,7 @@ export function SettingsView() {
       {/* Notifications Tab */}
       {activeTab === 'notifications' && (
         <GlassCard className="p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
+          <h3 className="text-lg font-semibold text-black mb-6 font-geist">
             Notification Preferences
           </h3>
           
@@ -183,13 +183,13 @@ export function SettingsView() {
             {Object.entries(notificationSettings).map(([key, value]) => (
               <div key={key} className="flex items-center justify-between">
                 <div>
-                  <label className="text-sm font-medium text-gray-900 dark:text-white">
+                  <label className="text-sm font-medium text-black font-geist">
                     {key === 'expenseUpdates' && 'Expense Updates'}
                     {key === 'paymentReminders' && 'Payment Reminders'}
                     {key === 'groupInvitations' && 'Group Invitations'}
                     {key === 'emailNotifications' && 'Email Notifications'}
                   </label>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                  <p className="text-xs text-gray-600 font-geist">
                     {key === 'expenseUpdates' && 'Get notified when expenses are added or modified'}
                     {key === 'paymentReminders' && 'Receive reminders for outstanding payments'}
                     {key === 'groupInvitations' && 'Get notified when invited to groups'}
@@ -217,13 +217,13 @@ export function SettingsView() {
       {/* Privacy Tab */}
       {activeTab === 'privacy' && (
         <GlassCard className="p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
+          <h3 className="text-lg font-semibold text-black mb-6 font-geist">
             Privacy & Security
           </h3>
           
           <div className="space-y-6">
             <div>
-              <h4 className="text-md font-medium text-gray-900 dark:text-white mb-3">
+              <h4 className="text-md font-medium text-black mb-3 font-geist">
                 Password
               </h4>
               <Button variant="outline">
@@ -232,10 +232,10 @@ export function SettingsView() {
             </div>
             
             <div>
-              <h4 className="text-md font-medium text-gray-900 dark:text-white mb-3">
+              <h4 className="text-md font-medium text-black mb-3 font-geist">
                 Two-Factor Authentication
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+              <p className="text-sm text-gray-600 mb-3 font-geist">
                 Add an extra layer of security to your account
               </p>
               <Button variant="outline">
@@ -244,10 +244,10 @@ export function SettingsView() {
             </div>
             
             <div>
-              <h4 className="text-md font-medium text-gray-900 dark:text-white mb-3">
+              <h4 className="text-md font-medium text-black mb-3 font-geist">
                 Active Sessions
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+              <p className="text-sm text-gray-600 mb-3 font-geist">
                 Manage devices that are signed into your account
               </p>
               <Button variant="outline">
@@ -262,16 +262,16 @@ export function SettingsView() {
       {activeTab === 'data' && (
         <div className="space-y-6">
           <GlassCard className="p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
+            <h3 className="text-lg font-semibold text-black mb-6 font-geist">
               Data Management
             </h3>
             
             <div className="space-y-6">
               <div>
-                <h4 className="text-md font-medium text-gray-900 dark:text-white mb-3">
+                <h4 className="text-md font-medium text-black mb-3 font-geist">
                   Export Data
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                <p className="text-sm text-gray-600 mb-3 font-geist">
                   Download a copy of your data including expenses, groups, and payments
                 </p>
                 <Button variant="outline" onClick={handleExportData}>
@@ -281,13 +281,13 @@ export function SettingsView() {
               </div>
               
               <div>
-                <h4 className="text-md font-medium text-gray-900 dark:text-white mb-3">
+                <h4 className="text-md font-medium text-black mb-3 font-geist">
                   Data Retention
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                <p className="text-sm text-gray-600 mb-3 font-geist">
                   Control how long your data is stored
                 </p>
-                <select className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                <select className="px-3 py-2 border border-gray-300 rounded-md bg-white text-black font-geist">
                   <option>Keep data indefinitely</option>
                   <option>Delete after 1 year</option>
                   <option>Delete after 2 years</option>
@@ -303,10 +303,10 @@ export function SettingsView() {
             </h3>
             
             <div>
-              <h4 className="text-md font-medium text-gray-900 dark:text-white mb-3">
+              <h4 className="text-md font-medium text-black mb-3 font-geist">
                 Delete Account
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-sm text-gray-600 mb-4 font-geist">
                 Permanently delete your account and all associated data. This action cannot be undone.
               </p>
               <Button variant="destructive" onClick={handleDeleteAccount}>
@@ -322,10 +322,10 @@ export function SettingsView() {
       <GlassCard className="p-6">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 className="text-lg font-semibold text-black font-geist">
               Sign Out
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-600 font-geist">
               Sign out of your account on this device
             </p>
           </div>
