@@ -14,6 +14,8 @@ interface AuthState {
   resetPassword: (email: string) => Promise<void>
   clearError: () => void
   initialize: () => void
+  setUser: (user: User) => void
+  updateProfile: (updates: Partial<User>) => Promise<void>
 }
 
 export const useAuthStore = create<AuthState>()((set, get) => ({
@@ -107,6 +109,48 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
         isAuthenticated: true,
         token: 'stored', // We'll get the actual token when needed
       })
+    }
+  },
+
+  setUser: (user: User) => {
+    set({ user })
+    // Also update stored user data
+    try {
+      localStorage.setItem('splitwise_user', JSON.stringify(user))
+    } catch (error) {
+      console.error('Error storing updated user data:', error)
+    }
+  },
+
+  updateProfile: async (updates: Partial<User>) => {
+    const currentUser = get().user
+    if (!currentUser) {
+      throw new Error('No user logged in')
+    }
+
+    set({ isLoading: true, error: null })
+    
+    try {
+      // In a real app, this would make an API call
+      // For demo, we'll just update locally
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      const updatedUser: User = {
+        ...currentUser,
+        ...updates,
+        updatedAt: new Date(),
+      }
+      
+      // Update both state and storage
+      set({ user: updatedUser, isLoading: false })
+      localStorage.setItem('splitwise_user', JSON.stringify(updatedUser))
+      
+    } catch (error) {
+      set({ 
+        isLoading: false, 
+        error: error instanceof Error ? error.message : 'Profile update failed' 
+      })
+      throw error
     }
   },
 }))
